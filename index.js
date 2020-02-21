@@ -9,6 +9,9 @@
 
 // EXAMPLE SOLUTION CODE:
 class Airplane {
+  /**
+   * @param {string} name
+   */
   constructor(name) {
     this.name = name;
     this.isFlying = false;
@@ -41,12 +44,20 @@ class Airplane {
 */
 
 class Person {
+  /**
+   * @param {string} name
+   * @param {number} age
+   */
   constructor(name, age){
     this.name= name;
     this.age = age;
+    /** @type {any[]} */
     this.stomach= [];
  }
 
+ /**
+   * @param {any} someFood
+   */
  eat(someFood) {
    if (this.stomach.length < 10) {
     this.stomach.push(someFood);
@@ -55,6 +66,7 @@ class Person {
 }
  poop(){
    if (this.stomach.length >= 10) {
+     /** @type {any[]} */
      this.stomach = [];
      return this.stomach
    }
@@ -81,6 +93,10 @@ toString(){
 */
 
 class Car {
+  /**
+   * @param {string} model
+   * @param {number} milesPerGallon
+   */
   constructor(model, milesPerGallon) {
     this.tank = 0;
     this.odometer = 0;
@@ -89,9 +105,15 @@ class Car {
 
   }
   
+  /**
+   * @param {any} gallons
+   */
   fill(gallons) {
     this.tank = this.tank + gallons;
   }
+  /**
+   * @param {number} distance
+   */
   drive(distance) {
     
     if (this.tank > 0){
@@ -122,6 +144,9 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  /**
+   * @param {{ name: any; age: any; location: any; }} attr
+   */
   constructor(attr){
     this.age = attr.age;
     this.name = attr.name;
@@ -147,17 +172,27 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian{
+  /**
+   * @param {{ name?: string; age?: number; location?: string; specialty: any; favLanguage: any; catchPhrase: any; }} instructorAttr
+   */
   constructor(instructorAttr){
     super(instructorAttr);
     this.specialty = instructorAttr.specialty;
     this.favLanguage = instructorAttr.favLanguage;
     this.catchPhrase = instructorAttr.catchPhrase;
   }
+  /**
+   * @param {any} subject
+   */
   demo(subject){
     return `Today we are learning about ${subject}`;
   }
+  /**
+   * @param {{ name: any; }} student
+   * @param {any} subject
+   */
   grade(student, subject){
-    `${student.name} receives a perfect score on ${subject}`;
+    return `${student.name} receives a perfect score on ${subject}`;
   }
 }
 
@@ -178,6 +213,9 @@ class Instructor extends Lambdasian{
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student extends Lambdasian{
+  /**
+   * @param {{ name?: string; age?: number; location?: string; previousBackground: any; className: any; favSubjects: any; }} studentAttr
+   */
   constructor(studentAttr){
     super(studentAttr);
     this.previousBackground = studentAttr.previousBackground;
@@ -189,12 +227,18 @@ class Student extends Lambdasian{
     return `Loving ${this.favSubjects}`;
   }
 
+  /**
+   * @param {any} subject
+   */
   PRAssignment(subject){
     return `${this.name} has submitted a PR for ${subject}`;
   }
 
+  /**
+   * @param {any} subject
+   */
   sprintChallenge(subject){
-    return `${this.name} has begun sprint challenge on ${subject};`
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 
@@ -212,7 +256,30 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+  /**
+   * @param {{ name?: string; age?: number; location?: string; specialty?: string; favLanguage?: string; catchPhrase?: string; gradClassName: any; favInstructor: any; }} PMAttr
+   */
+  constructor(PMAttr){
+    super(PMAttr);
+    this.gradClassName = PMAttr.gradClassName;
+    this.favInstructor = PMAttr.favInstructor
+  }
+
+  /**
+   * @param {any} channel
+   */
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+
+  /**
+   * @param {{ name: any; }} student
+   * @param {any} subject
+   */
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 
 }
 
