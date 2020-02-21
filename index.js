@@ -81,7 +81,30 @@ toString(){
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+
+  }
   
+  fill(gallons) {
+    this.tank = this.tank + gallons;
+  }
+  drive(distance) {
+    
+    if (this.tank > 0){
+      this.odometer = this.odometer + distance;
+    this.tank = this.tank - distance/this.milesPerGallon;
+    }
+    
+    if (this.tank <= 0) {
+      this.tank = 0;
+      this.odometer = this.tank * this.milesPerGallon +this.odometer;
+      return `I ran out of fuel at ${this.odometer} miles`
+    }
+  }
 
 }
 
